@@ -11,16 +11,16 @@ type scan struct {
 }
 
 type Scanner interface {
-	Scan(address string) error
+	Scan(address string, ports []int)
 }
 
 func NewScanner() Scanner {
 	return &scan{}
 }
 
-func (s *scan) Scan(address string) error {
+func (s *scan) Scan(address string, ports []int) {
 	var wg sync.WaitGroup
-	for i := 80; i <= 81; i++ {
+	for _, port := range ports {
 		wg.Add(1)
 		go func(i int) {
 			defer wg.Done()
@@ -36,9 +36,7 @@ func (s *scan) Scan(address string) error {
 					fmt.Println(err)
 				}
 			}
-		}(i)
+		}(port)
 	}
 	wg.Wait()
-
-	return nil
 }
