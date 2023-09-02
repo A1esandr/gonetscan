@@ -7,18 +7,23 @@ import (
 	"sync"
 )
 
+type Result struct {
+	Open   []int
+	Closed []int
+}
+
 type scan struct {
 }
 
 type Scanner interface {
-	Scan(address string, ports []int)
+	Scan(address string, ports []int) *Result
 }
 
 func NewScanner() Scanner {
 	return &scan{}
 }
 
-func (s *scan) Scan(address string, ports []int) {
+func (s *scan) Scan(address string, ports []int) *Result {
 	var wg sync.WaitGroup
 	for _, port := range ports {
 		wg.Add(1)
