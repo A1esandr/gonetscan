@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"strconv"
+
 	"github.com/A1esandr/gonetscan"
 )
 
@@ -10,6 +12,13 @@ func main() {
 	for i := 1; i < 100; i++ {
 		ports = append(ports, i)
 	}
-	gonetscan.NewScanner().Scan("127.0.0.1", ports)
+	address := "127.0.0.1"
+	result := gonetscan.NewScanner().Scan(address, ports)
+	if len(result.Open) > 0 {
+		fmt.Println("Open")
+	}
+	for _, v := range result.Open {
+		fmt.Println(address, ":", strconv.Itoa(v))
+	}
 	fmt.Println("Finish")
 }
