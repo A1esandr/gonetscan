@@ -3,6 +3,7 @@ package gonetscan
 import (
 	"fmt"
 	"net"
+	"sort"
 	"strconv"
 	"sync"
 )
@@ -54,5 +55,6 @@ func (s *scan) Scan(address string, ports []int) *Result {
 		}(port)
 	}
 	wg.Wait()
+	sort.IntSlice(result.Result.Open).Sort()
 	return result.Result
 }
