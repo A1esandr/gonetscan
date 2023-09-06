@@ -17,9 +17,13 @@ type (
 		Result *Result
 		mu     sync.Mutex
 	}
+	Config struct {
+		ShowLogs bool
+	}
 )
 
 type scan struct {
+	config Config
 }
 
 type Scanner interface {
@@ -28,6 +32,10 @@ type Scanner interface {
 
 func NewScanner() Scanner {
 	return &scan{}
+}
+
+func (s *scan) WithConfig(config Config) {
+	s.config = config
 }
 
 func (s *scan) Scan(address string, ports []int) *Result {
