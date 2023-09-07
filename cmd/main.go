@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 
 	"github.com/A1esandr/gonetscan"
 )
@@ -18,7 +17,7 @@ func main() {
 		fmt.Println("Open")
 	}
 	for _, v := range result.Open {
-		fmt.Println(address, ":", strconv.Itoa(v))
+		fmt.Printf("%s:%d", address, v)
 	}
 	fmt.Println("Finish")
 }

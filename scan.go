@@ -48,10 +48,14 @@ func (s *scan) Scan(address string, ports []int) *Result {
 			addr := address + ":" + strconv.Itoa(i)
 			c, err := net.Dial("tcp", addr)
 			if err != nil {
-				fmt.Println(err)
+				if s.config.ShowLogs {
+					fmt.Println(err)
+				}
 			}
 			if c != nil {
-				fmt.Println("Success", addr)
+				if s.config.ShowLogs {
+					fmt.Println("Success", addr)
+				}
 				result.mu.Lock()
 				result.Result.Open = append(result.Result.Open, i)
 				result.mu.Unlock()
