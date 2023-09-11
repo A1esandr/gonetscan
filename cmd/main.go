@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"math"
 
 	"github.com/A1esandr/gonetscan"
 )
@@ -16,16 +17,16 @@ func init() {
 func main() {
 	flag.Parse()
 	ports := make([]int, 0, 10000)
-	for i := 1; i < 1000; i++ {
+	fmt.Println(int(math.Pow(2, 10)))
+	for i := 1; i < int(math.Pow(2, 10)); i++ {
 		ports = append(ports, i)
 	}
-	address := "127.0.0.1"
 	result := gonetscan.NewScanner().Scan(address, ports)
 	if len(result.Open) > 0 {
 		fmt.Println("Open")
 	}
 	for _, v := range result.Open {
-		fmt.Printf("%s:%d", address, v)
+		fmt.Printf("%s:%d\n", address, v)
 	}
 	fmt.Println("Finish")
 }
