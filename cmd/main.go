@@ -40,7 +40,7 @@ func main() {
 }
 
 func write(data []string) {
-	file, err := os.Create("./result" + time.Now().String() + "./.txt")
+	file, err := os.Create("./result" + time.Now().String() + ".txt")
 	if err != nil {
 		log.Fatal(err)
 	}
