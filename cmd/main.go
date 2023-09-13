@@ -20,7 +20,7 @@ func init() {
 func main() {
 	flag.Parse()
 	ports := make([]int, 0, 10000)
-	fmt.Println(int(math.Pow(2, 16)))
+	fmt.Println("Scan", int(math.Pow(2, 16)), "ports")
 	for i := 1; i < int(math.Pow(2, 16)); i++ {
 		ports = append(ports, i)
 	}
@@ -40,7 +40,7 @@ func main() {
 }
 
 func write(data []string) {
-	file, err := os.Create("./result" + time.Now().String() + ".txt")
+	file, err := os.Create("result" + time.Now().Format("2023-01-01") + ".txt")
 	if err != nil {
 		log.Fatal(err)
 	}
