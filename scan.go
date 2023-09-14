@@ -13,6 +13,9 @@ type (
 		Open   []int
 		Closed []int
 	}
+	NetResult struct {
+		Hosts []Result
+	}
 	RawResult struct {
 		Result *Result
 		mu     sync.Mutex
@@ -69,4 +72,8 @@ func (s *scan) Scan(address string, ports []int) *Result {
 	wg.Wait()
 	sort.IntSlice(result.Result.Open).Sort()
 	return result.Result
+}
+
+func (s *scan) ScanNet() *NetResult {
+	return nil
 }
