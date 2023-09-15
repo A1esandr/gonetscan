@@ -74,6 +74,10 @@ func (s *scan) Scan(address string, ports []int) *Result {
 	return result.Result
 }
 
-func (s *scan) ScanNet() *NetResult {
+func (s *scan) ScanNet(subNet string) *NetResult {
 	return nil
+}
+
+func resolveNetList(subNet string) []string {
+
 }
